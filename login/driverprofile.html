@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Profile</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="driverprofile.css">
+</head>
+<body>
+
+ <div class="container">
+  <div class="top-badge">Driver Profile</div>
+
+  <div class="header">
+    <h2>Set up your account</h2>
+    <p>Complete your driver details to start posting rides on RideMitra.</p>
+  </div>
+
+  <div class="form">
+    <div class="input-group">
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name">
+    </div>
+
+    <div class="input-group">
+      <label>Phone Number</label>
+      <input type="text" id="phone" placeholder="Enter your phone number">
+    </div>
+
+    <div class="input-group">
+      <label>Vehicle Number</label>
+      <input type="text" id="vehicleNo" placeholder="Enter your vehicle number">
+    </div>
+
+    <button class="save-btn" onclick="saveProfile()">Save Profile</button>
+  </div>
+
+  <div class="bottom-line">
+    A complete profile builds trust with passengers.
+  </div>
+</div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <!-- JS -->
+  <script src="driverprofile.js"></script>
+
+</body>
+</html>

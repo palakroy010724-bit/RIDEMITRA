@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passenger Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="seeker-dashboard.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>RideSync</h2>
+      <button onclick="showSection('search')">🔍 Search Ride</button>
+      <button onclick="showSection('profile')">👤 Profile</button>
+      <button onclick="showSection('joined')">📋 Joined Rides</button>
+      <button onclick="logout()">🚪 Logout</button>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+      <div class="topbar">
+        <h3>Passenger Dashboard</h3>
+      </div>
+
+      <!-- Search Section -->
+      <div id="searchSection" class="card">
+        <h3>Find Ride</h3>
+
+        <div class="form-grid">
+          <input type="text" id="searchPickup" placeholder="Pickup Location">
+          <input type="text" id="searchDestination" placeholder="Destination">
+          <input type="date" id="searchDate">
+          <input type="time" id="searchTime">
+        </div>
+
+        <button class="primary-btn" onclick="searchRide()">Search</button>
+
+        <div id="ridesList"></div>
+      </div>
+
+      <!-- Profile Section -->
+      <div id="profileSection" class="card" style="display:none;">
+        <h3>Your Profile</h3>
+
+        <div class="profile-box">
+          <div class="profile-avatar">👤</div>
+
+          <div class="profile-form">
+            <div class="profile-field">
+              <label for="p_name">Name</label>
+              <input type="text" id="p_name" placeholder="Enter your name">
+            </div>
+
+            <div class="profile-field">
+              <label for="p_phone">Phone Number</label>
+              <input type="text" id="p_phone" placeholder="Enter your phone number">
+            </div>
+
+            <button class="primary-btn" onclick="saveProfile()">Update Profile</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Joined Section -->
+      <div id="joinedSection" class="card" style="display:none;">
+        <h3>Joined Rides</h3>
+        <div id="joinedRides"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Chat Box -->
+  <div id="chatBox" class="chat-box" style="display:none;">
+    <h4>Chat 💬</h4>
+    <div id="messages"></div>
+    <input type="text" id="msgInput" placeholder="Type message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <!-- JS -->
+  <script src="seeker-dashboard.js"></script>
+
+</body>
+</html>

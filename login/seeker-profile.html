@@ -1,0 +1,42 @@
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passenger Profile</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="seeker-profile.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="profile-card">
+      <div class="profile-icon">👤</div>
+
+      <h2>Create Your Profile</h2>
+      <p class="subtitle">Fill your details to continue as passenger</p>
+
+      <div class="form-group">
+        <label for="name">Passenger Name</label>
+        <input type="text" id="p_name" placeholder="Enter your name">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Mobile Number</label>
+        <input type="text" id="p_phone" placeholder="Enter mobile number">
+      </div>
+
+      <button type="button" class="save-btn" onclick="saveProfile()">Save Profile</button>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script src="seeker-profile.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RideSync</title>
+  <link rel="stylesheet" href="login.css">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="header">
+    <h1>RideMitra</h1>
+    <p>Ride Together,Share Together</p>
+        </div>
+<div class="container">
+  <h1>Welcome to RideMitra</h1>
+  <p class="subtitle">Ride Together,Share Together</p>
+
+
+  <!-- Roles -->
+  <div class="roles">
+    <button onclick="selectRole('driver')" id="driverBtn" class="role-btn">Post Ride <ion-icon name="car-sport"></ion-icon></ion-icon></button>
+    <button onclick="selectRole('passenger')" id="passengerBtn" class="role-btn">Find Ride <ion-icon name="search"></ion-icon></button>
+  </div>
+
+  <!-- Login -->
+  <div id="loginForm">
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button class="login-btn" onclick="login()">Login</button>
+  </div>
+      <a href="#">Forgotten password?</a>
+      <hr>
+      <button onclick="window.open('Signup.html', '_blank')" class="btn" onclick="showSignup()">Create new account</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="driverdashboard.css">
+</head>
+
+<body>
+  <div class="app">
+
+    <div class="sidebar">
+      <h2>RideSync</h2>
+
+      <button onclick="showSection('ride')">🚗 Post Ride</button>
+      <button onclick="showSection('profile')">👤 Profile</button>
+      <button onclick="showSection('myrides')">📋 My Rides</button>
+      <button onclick="showSection('history')">📜 History</button>
+      <button onclick="showSection('notifications')">🔔 Notifications</button>
+    </div>
+
+    <div class="main">
+
+      <div class="topbar">
+        <h3>Driver Dashboard</h3>
+        <div class="topbar-right">
+          <button class="notification-btn" onclick="showSection('notifications')">
+            🔔
+            <span id="notificationCount" class="notification-count">0</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="rideSection" class="card">
+        <h3>Post a Ride</h3>
+
+        <div class="form-grid">
+          <input type="text" id="pickup" placeholder="Pickup Location">
+          <input type="text" id="destination" placeholder="Destination">
+          <input type="date" id="rideDate">
+          <input type="time" id="time">
+          <input type="number" id="seats" placeholder="Seats">
+          <input type="number" id="fare" placeholder="Fare ₹">
+
+          <select id="vehicle">
+            <option value="bike">Bike</option>
+            <option value="car">Car</option>
+          </select>
+        </div>
+
+        <button class="primary-btn" onclick="postRide()">Post Ride</button>
+      </div>
+
+      <div id="profileSection" class="card" style="display: none;">
+        <h3>My Profile</h3>
+
+        <div class="profile-box">
+          <div class="profile-avatar">👤</div>
+
+          <div class="profile-form">
+            <div class="profile-field">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Enter your name">
+            </div>
+
+            <div class="profile-field">
+              <label for="phone">Phone Number</label>
+              <input type="text" id="phone" placeholder="Enter phone number">
+            </div>
+
+            <div class="profile-field">
+              <label for="vehicleNo">Vehicle Number</label>
+              <input type="text" id="vehicleNo" placeholder="Enter vehicle number">
+            </div>
+
+            <button class="primary-btn" onclick="saveProfile()">Update Profile</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="myridesSection" class="card" style="display: none;">
+        <h3>My Rides</h3>
+        <div id="myRides"></div>
+      </div>
+
+      <div id="historySection" class="card" style="display: none;">
+        <h3>Ride History</h3>
+        <div id="history"></div>
+      </div>
+
+      <div id="notificationsSection" class="card" style="display: none;">
+        <h3>Notifications</h3>
+        <div id="notificationList">
+          <p>No notifications yet</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="driverdashboard.js"></script>
+</body>
+</html>
