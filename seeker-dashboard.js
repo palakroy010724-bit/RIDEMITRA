@@ -74,10 +74,12 @@ function showSection(sec) {
   const searchSection = document.getElementById("searchSection");
   const profileSection = document.getElementById("profileSection");
   const joinedSection = document.getElementById("joinedSection");
+  const historySection = document.getElementById("historySection");
 
   if (searchSection) searchSection.style.display = "none";
   if (profileSection) profileSection.style.display = "none";
   if (joinedSection) joinedSection.style.display = "none";
+  if (historySection) historySection.style.display = "none";
 
   document.querySelectorAll(".sidebar button").forEach(btn => btn.classList.remove("active"));
 
@@ -101,6 +103,12 @@ function showSection(sec) {
     if (joinedSection) joinedSection.style.display = "block";
     loadJoined();
     setActiveButton(2);
+  }
+
+  if (sec === "history") {
+    if (historySection) historySection.style.display = "block";
+    loadHistory();
+    setActiveButton(3);
   }
 }
 
@@ -381,7 +389,69 @@ function loadJoined() {
         joinedRides.innerHTML = "<p>Error loading joined rides</p>";
       }
     });
-}function logout() {
+}
+
+// History (completed rides that this passenger had joined)
+function loadHistory() {
+  const profile = getPassengerProfileFromStorage();
+  const passengerId = profile.passengerId || getLoggedInUserId();
+  const passengerName = profile.name || "";
+ 
+  if (!passengerId) return;
+ 
+  db.collection("rides")
+    .where("status", "==", "completed")
+    .get()
+    .then(snapshot => {
+      let output = "";
+ 
+      snapshot.forEach(doc => {
+        const r = doc.data() || {};
+        const passengers = Array.isArray(r.passengers) ? r.passengers : [];
+ 
+        const joined = passengers.some(p => {
+          if (typeof p === "string") return p === passengerName;
+          return p && p.passengerId === passengerId;
+        });
+ 
+        if (joined) {
+          // Find this passenger's own entry saved in the ride
+          const me = passengers.find(p => {
+            if (typeof p === "string") return p === passengerName;
+            return p && p.passengerId === passengerId;
+          });
+ 
+          const myName = (typeof me === "string" ? me : me && me.name) || passengerName || "Not set";
+          const myPhone = (me && typeof me === "object" && me.phone) || profile.phone || "Not set";
+ 
+          output += `
+            <div class="ride-card">
+              <h4>${r.pickup || "Not set"} → ${r.destination || "Not set"}</h4>
+              <p><strong>Date:</strong> ${r.rideDate || "Not set"}</p>
+              <p><strong>Time:</strong> ${r.time || "Not set"}</p>
+              <p><strong>Fare:</strong> ₹${r.fare || 0}</p>
+              <p><strong>Vehicle:</strong> ${r.vehicle || "Not set"}</p>
+              <p><strong>Status:</strong> Completed</p>
+            </div>
+          `;
+        }
+      });
+ 
+      const historyEl = document.getElementById("history");
+      if (historyEl) {
+        historyEl.innerHTML = output || "<p>No history</p>";
+      }
+    })
+    .catch(err => {
+      console.error("Load history error:", err);
+      const historyEl = document.getElementById("history");
+      if (historyEl) {
+        historyEl.innerHTML = "<p>Error loading history</p>";
+      }
+    });
+}
+
+function logout() {
     firebase.auth().signOut()
         .then(() => {
             localStorage.clear();
